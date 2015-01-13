@@ -1,7 +1,23 @@
 "use strict";
 
 // Currying function
-var curry = require("curry");
+var curry = function curry(fn) {
+    var length = fn.length,
+
+        recurry = function (prevArgs) {
+            return function() {
+                var args = prevArgs.concat([].slice.call(arguments));
+
+                if (args.length < length) {
+                    return recurry(args);
+                } else {
+                    return fn.apply(this, args);
+                }
+            };
+        };
+
+  return recurry([]);
+};
 
 /**
  * Library functions
@@ -70,6 +86,7 @@ var toPairs = function (object) {
 };
 
 module.exports = {
+    curry: curry,
     isObject: isObject,
     isArray: isArray,
     isString: isString,
