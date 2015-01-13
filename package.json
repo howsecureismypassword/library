@@ -4,11 +4,14 @@
   "description": "A smaller version of the Ramda functions used by HSIMP",
   "main": "library.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test"
   },
   "author": "Small Hadron Collider",
   "license": "MIT",
   "dependencies": {
     "curry": "1.2.*"
+  },
+  "devDependencies": {
+    "buster": "0.7.*"
   }
 }
