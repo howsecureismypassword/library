@@ -1,31 +1,5 @@
-// From http://www.crockford.com/javascript/www_svendtofte_com/code/curried_javascript/index.html
-var curry = function (func, args, space) {
-    var n  = func.length - args.length; //arguments still to come
-    var sa = Array.prototype.slice.apply(args); // saved accumulator array
-
-    function accumulator(moreArgs, sa, n) {
-        var saPrev = sa.slice(0); // to reset
-        var nPrev  = n; // to reset
-
-        for(var i = 0; i < moreArgs.length; i++, n--) {
-            sa[sa.length] = moreArgs[i];
-        }
-
-        if ((n - moreArgs.length) <= 0) {
-            var res = func.apply(space, sa); // reset vars, so curried function can be applied to new params.
-            sa = saPrev;
-            n  = nPrev;
-            return res;
-        } else {
-            return function () {
-                // arguments are params, so closure bussiness is avoided.
-                return accumulator(arguments, sa.slice(0), n);
-            };
-        }
-    }
-
-    return accumulator([], sa, n);
-};
+// Currying function
+var curry = require("curry");
 
 /**
  * Library functions
@@ -33,7 +7,7 @@ var curry = function (func, args, space) {
 var noOp = function () {};
 
 var isArray = function (val) {
-    return Object.prototype.toString.call( someVar ) === "[object Array]";
+    return Object.prototype.toString.call(val) === "[object Array]";
 };
 
 var isObject = function (val) {
@@ -56,15 +30,25 @@ var forEach = curry(function (func, items) {
 
     if (isArray(items)) {
         for (i = 0, l = items.length; i < l; i++) {
-            func(items[i]);
+            func(items[i], i);
         }
     } else {
-        for (i in object) {
-            if (object.hasOwnProperty(i)) {
-                func(items[i]);
+        for (i in items) {
+            if (items.hasOwnProperty(i)) {
+                func(items[i], i);
             }
         }
     }
+});
+
+var map = curry(function (func, item) {
+    var arr = [];
+
+    forEach(function (item, value) {
+        arr.push(func(item, value));
+    }, item);
+
+    return arr;
 });
 
 var sortBy = curry(function (sortBy, arr) {
@@ -78,23 +62,20 @@ var prop = curry(function (prop, item) {
 });
 
 var toPairs = function (object) {
-    var arr = [];
-
-    for (var i in object) {
-        if (object.hasOwnProperty(i)) {
-            arr.push([i, object[i]]);
-        }
-    }
-
-    return arr;
+    return map(function (item, i) {
+        return [i, item];
+    });
 };
 
 module.exports = {
-    forEach: forEach,
+    isObject: isObject,
+    isArray: isArray,
     isString: isString,
     isNumber: isNumber,
     sortBy: sortBy,
     prop: prop,
+    forEach: forEach,
+    map: map,
     toPairs: toPairs,
     noOp: noOp
 };
