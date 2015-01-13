@@ -8,6 +8,10 @@
   },
   "author": "Small Hadron Collider",
   "license": "MIT",
+  "repository" : {
+    "type" : "git",
+    "url" : "http://github.com/howsecureismypassword/library.git"
+  },
   "dependencies": {
     "curry": "1.2.*"
   },
