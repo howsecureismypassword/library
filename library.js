@@ -64,7 +64,7 @@ var prop = curry(function (prop, item) {
 var toPairs = function (object) {
     return map(function (item, i) {
         return [i, item];
-    });
+    }, object);
 };
 
 module.exports = {

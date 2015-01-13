@@ -7,7 +7,7 @@ var assert = buster.referee.assert;
 /**
  * Setup
  */
-var L = require("./library.min");
+var L = require("./library");
 
 /**
  * Tests
@@ -47,6 +47,21 @@ buster.testCase("library", {
             });
 
             assert.equals(double([1, 2, 3]), [2, 4, 6]);
+        },
+    },
+    'sortBy': {
+        'basic': function () {
+            assert.equals(L.sortBy("name", [{ "name": "bob"}, { "name": "adam"}]), [{ "name": "adam" }, { "name": "bob" }]);
+        },
+
+        'curried': function () {
+            var sortByName = L.sortBy("name");
+            assert.equals(sortByName([{ "name": "bob"}, { "name": "adam"}]), [{ "name": "adam" }, { "name": "bob" }]);
+        },
+    },
+    'toPairs': {
+        'basic': function () {
+            assert.equals(L.toPairs({ "name1": "bob", "name2": "adam"}), [["name1", "bob"], ["name2", "adam"]]);
         },
     }
 });
