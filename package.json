@@ -12,6 +12,8 @@
     "curry": "1.2.*"
   },
   "devDependencies": {
-    "buster": "0.7.*"
+    "browserify": "^8.1.0",
+    "buster": "0.7.*",
+    "uglify": "^0.1.1"
   }
 }
