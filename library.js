@@ -1,3 +1,5 @@
+"use strict";
+
 // Currying function
 var curry = require("curry");
 
@@ -15,7 +17,7 @@ var isObject = function (val) {
 };
 
 var isString = function (val) {
-    return typeof val == 'string' || val instanceof String;
+    return typeof val === "string" || val instanceof String;
 };
 
 var isNumber = function (val) {
@@ -23,7 +25,7 @@ var isNumber = function (val) {
 };
 
 var forEach = curry(function (func, items) {
-    var i;
+    var i, l;
 
     items = items || [];
     func = func || noOp;
