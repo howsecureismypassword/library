@@ -60,7 +60,7 @@ var sortBy = curry(function (sortBy, arr) {
 });
 
 var prop = curry(function (prop, item) {
-    return item[prop];
+    return item.hasOwnProperty(prop) ? item[prop] : null;
 });
 
 var toPairs = function (object) {
