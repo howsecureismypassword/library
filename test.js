@@ -111,5 +111,18 @@ buster.testCase("library", {
         assert(L.filter(function (item) {
             return item !== "b";
         }, ["a", "b", "c"]), ["a", "c"]);
+    },
+
+    "some": {
+        "true": function () {
+            assert.same(L.some(function (item) {
+                return item === "a";
+            }, ["a", "b", "c"]), true);
+        },
+        "false": function () {
+            assert.same(L.some(function (item) {
+                return item === "a";
+            }, ["b", "c", "d"]), false);
+        }
     }
 });

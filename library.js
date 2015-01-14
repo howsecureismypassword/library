@@ -123,6 +123,19 @@ var filter = curry(function (func, items) {
     }, [], items);
 });
 
+var some = curry(function (func, items) {
+    var some = false;
+
+    forEach(function (item) {
+        if (func(item)) {
+            some = true;
+            return false;
+        }
+    }, items);
+
+    return some;
+});
+
 var output = function (val) {
     return function () {
         return val;
@@ -144,5 +157,6 @@ module.exports = {
     defaults: defaults,
     output: output,
     filter: filter,
+    some: some,
     noOp: noOp
 };
