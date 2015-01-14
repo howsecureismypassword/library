@@ -48,12 +48,16 @@ var forEach = curry(function (func, items) {
 
     if (isArray(items)) {
         for (i = 0, l = items.length; i < l; i++) {
-            func(items[i], i);
+            if (func(items[i], i) === false) {
+                break;
+            }
         }
     } else {
         for (i in items) {
             if (items.hasOwnProperty(i)) {
-                func(items[i], i);
+                if (func(items[i], i) === false) {
+                    break;
+                }
             }
         }
     }
