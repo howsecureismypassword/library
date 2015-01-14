@@ -24,6 +24,10 @@ var curry = function curry(fn) {
  */
 var noOp = function () {};
 
+var isFunction = function (val) {
+    return val && {}.toString.call(val) === "[object Function]";
+};
+
 var isArray = function (val) {
     return Object.prototype.toString.call(val) === "[object Array]";
 };
@@ -144,6 +148,7 @@ var output = function (val) {
 
 module.exports = {
     curry: curry,
+    isFunction: isFunction,
     isObject: isObject,
     isArray: isArray,
     isString: isString,
