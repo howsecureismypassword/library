@@ -65,5 +65,28 @@ buster.testCase("library", {
         "basic": function () {
             assert.equals(L.toPairs({ "name1": "bob", "name2": "adam"}), [["name1", "bob"], ["name2", "adam"]]);
         },
+    },
+    "defaults": {
+        "exception": function () {
+            assert.exception(function () {
+                L.defaults({
+                    "a": 10,
+                    "b": 12
+                }, {
+                    "c": 50
+                });
+            });
+        },
+        "basic": function () {
+            assert.equals(L.defaults({
+                "a": 10,
+                "b": 50
+            }, {
+                "a": 20
+            }), {
+                "a": 20,
+                "b": 50
+            });
+        },
     }
 });

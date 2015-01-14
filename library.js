@@ -85,6 +85,22 @@ var toPairs = function (object) {
     }, object);
 };
 
+var defaults = curry(function (defaults, options) {
+    forEach(function (value, key) {
+        if (!defaults.hasOwnProperty(key)) {
+            throw new Error("Invalid key: " + key);
+        }
+    }, options);
+
+    var results = {};
+
+    forEach(function (value, key) {
+        results[key] = options.hasOwnProperty(key) ? options[key] : defaults[key];
+    }, defaults);
+
+    return results;
+});
+
 module.exports = {
     curry: curry,
     isObject: isObject,
@@ -96,5 +112,6 @@ module.exports = {
     forEach: forEach,
     map: map,
     toPairs: toPairs,
+    defaults: defaults,
     noOp: noOp
 };
