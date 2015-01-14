@@ -47,6 +47,10 @@ var isNumber = function (val) {
 var forEach = curry(function (func, items) {
     var i, l;
 
+    if (!isFunction(func)) {
+        throw new Error("forEach takes a function as the first value");
+    }
+
     items = items || [];
     func = func || noOp;
 
@@ -70,6 +74,10 @@ var forEach = curry(function (func, items) {
 var map = curry(function (func, item) {
     var arr = [];
 
+    if (!isFunction(func)) {
+        throw new Error("map takes a function as the first value");
+    }
+
     forEach(function (item, value) {
         arr.push(func(item, value));
     }, item);
@@ -78,6 +86,10 @@ var map = curry(function (func, item) {
 });
 
 var reduce = curry(function (func, accumulator, items) {
+    if (!isFunction(func)) {
+        throw new Error("reduce takes a function as the first value");
+    }
+
     forEach(function (item, value) {
         accumulator = func(accumulator, item, value);
     }, items);

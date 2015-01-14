@@ -33,6 +33,20 @@ buster.testCase("library", {
         }
     },
 
+    "forEach": {
+        "exception": function () {
+            assert.exception(function () {
+                L.forEach("test", function () {});
+            }) ;
+        },
+        "curry exception": function () {
+            assert.exception(function () {
+                var each = L.forEach("test");
+                each(function () {});
+            }) ;
+        }
+    },
+
     "map": {
         "basic": function () {
             assert.equals(L.map(function (item) {
