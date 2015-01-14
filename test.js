@@ -88,5 +88,9 @@ buster.testCase("library", {
                 "b": 50
             });
         },
+    },
+    "output": function () {
+        var twelve = L.output(12);
+        assert.same(twelve(), 12);
     }
 });

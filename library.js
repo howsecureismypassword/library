@@ -101,6 +101,12 @@ var defaults = curry(function (defaults, options) {
     return results;
 });
 
+var output = function (val) {
+    return function () {
+        return val;
+    };
+};
+
 module.exports = {
     curry: curry,
     isObject: isObject,
@@ -113,5 +119,6 @@ module.exports = {
     map: map,
     toPairs: toPairs,
     defaults: defaults,
+    output: output,
     noOp: noOp
 };
