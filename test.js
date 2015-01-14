@@ -51,6 +51,13 @@ buster.testCase("library", {
             assert.equals(double([1, 2, 3]), [2, 4, 6]);
         },
     },
+    "reduce": {
+        "basic": function () {
+            assert.equals(L.reduce(function (acc, val) {
+                return acc + val;
+            }, 10, [1, 2, 3]), 16);
+        },
+    },
     "sortBy": {
         "basic": function () {
             assert.equals(L.sortBy("name", [{ "name": "bob"}, { "name": "adam"}]), [{ "name": "adam" }, { "name": "bob" }]);

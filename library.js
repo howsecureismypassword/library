@@ -69,6 +69,14 @@ var map = curry(function (func, item) {
     return arr;
 });
 
+var reduce = curry(function (func, accumulator, items) {
+    forEach(function (item, value) {
+        accumulator = func(accumulator, item, value);
+    }, items);
+
+    return accumulator;
+});
+
 var sortBy = curry(function (sortBy, arr) {
     return arr.sort(function (a, b) {
         return a[sortBy] >= b[sortBy] ? 1 : -1;
@@ -117,6 +125,7 @@ module.exports = {
     prop: prop,
     forEach: forEach,
     map: map,
+    reduce: reduce,
     toPairs: toPairs,
     defaults: defaults,
     output: output,
