@@ -32,6 +32,7 @@ buster.testCase("library", {
             assert.same(L.isArray(false), false);
         }
     },
+
     "map": {
         "basic": function () {
             assert.equals(L.map(function (item) {
@@ -51,6 +52,7 @@ buster.testCase("library", {
             assert.equals(double([1, 2, 3]), [2, 4, 6]);
         },
     },
+
     "reduce": {
         "basic": function () {
             assert.equals(L.reduce(function (acc, val) {
@@ -58,6 +60,7 @@ buster.testCase("library", {
             }, 10, [1, 2, 3]), 16);
         },
     },
+
     "sortBy": {
         "basic": function () {
             assert.equals(L.sortBy("name", [{ "name": "bob"}, { "name": "adam"}]), [{ "name": "adam" }, { "name": "bob" }]);
@@ -68,11 +71,13 @@ buster.testCase("library", {
             assert.equals(sortByName([{ "name": "bob"}, { "name": "adam"}]), [{ "name": "adam" }, { "name": "bob" }]);
         },
     },
+
     "toPairs": {
         "basic": function () {
             assert.equals(L.toPairs({ "name1": "bob", "name2": "adam"}), [["name1", "bob"], ["name2", "adam"]]);
         },
     },
+
     "defaults": {
         "exception": function () {
             assert.exception(function () {
@@ -96,8 +101,15 @@ buster.testCase("library", {
             });
         },
     },
+
     "output": function () {
         var twelve = L.output(12);
         assert.same(twelve(), 12);
+    },
+
+    "filter": function () {
+        assert(L.filter(function (item) {
+            return item !== "b";
+        }, ["a", "b", "c"]), ["a", "c"]);
     }
 });

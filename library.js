@@ -113,6 +113,16 @@ var defaults = curry(function (defaults, options) {
     return results;
 });
 
+var filter = curry(function (func, items) {
+    return reduce(function (acc, item) {
+        if (func(item)) {
+            acc.push(item);
+        }
+
+        return acc;
+    }, [], items);
+});
+
 var output = function (val) {
     return function () {
         return val;
@@ -133,5 +143,6 @@ module.exports = {
     toPairs: toPairs,
     defaults: defaults,
     output: output,
+    filter: filter,
     noOp: noOp
 };
