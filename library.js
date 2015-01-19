@@ -130,13 +130,19 @@ var defaults = curry(function (defaults, options) {
 });
 
 var filter = curry(function (func, items) {
+    var isArr = isArray(items);
+
     return reduce(function (acc, value, key) {
         if (func(value, key)) {
-            acc[key] = value;
+            if (isArr) {
+                acc.push(value);
+            } else {
+                acc[key] = value;
+            }
         }
 
         return acc;
-    }, isArray(items) ? [] : {}, items);
+    }, isArr ? [] : {}, items);
 });
 
 var some = curry(function (func, items) {

@@ -123,12 +123,12 @@ buster.testCase("library", {
 
     "filter": {
         "array": function () {
-            assert(L.filter(function (item) {
+            assert.equals(L.filter(function (item) {
                 return item !== "b";
             }, ["a", "b", "c"]), ["a", "c"]);
         },
         "object": function () {
-            assert(L.filter(function (value, key) {
+            assert.equals(L.filter(function (value, key) {
                 return value === "cow" || key === "c";
             }, {"a": "cow", "b": "fish", "c": "monkey"}), {"a": "cow", "c": "monkey"});
         }
