@@ -78,8 +78,8 @@ var map = curry(function (func, item) {
         throw new Error("map takes a function as the first value");
     }
 
-    forEach(function (item, value) {
-        arr.push(func(item, value));
+    forEach(function (item, key) {
+        arr.push(func(item, key));
     }, item);
 
     return arr;
@@ -90,8 +90,8 @@ var reduce = curry(function (func, accumulator, items) {
         throw new Error("reduce takes a function as the first value");
     }
 
-    forEach(function (item, value) {
-        accumulator = func(accumulator, item, value);
+    forEach(function (item, key) {
+        accumulator = func(accumulator, item, key);
     }, items);
 
     return accumulator;
@@ -130,13 +130,13 @@ var defaults = curry(function (defaults, options) {
 });
 
 var filter = curry(function (func, items) {
-    return reduce(function (acc, item) {
-        if (func(item)) {
-            acc.push(item);
+    return reduce(function (acc, value, key) {
+        if (func(value, key)) {
+            acc[key] = value;
         }
 
         return acc;
-    }, [], items);
+    }, isArray(items) ? [] : {}, items);
 });
 
 var some = curry(function (func, items) {
