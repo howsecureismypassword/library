@@ -1,6 +1,6 @@
 {
   "name": "hsimp-library",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A smaller version of the Ramda functions used by HSIMP",
   "main": "library.js",
   "scripts": {

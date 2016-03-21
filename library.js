@@ -85,6 +85,18 @@ var map = curry(function (func, item) {
     return arr;
 });
 
+var memoize = function (fn) {
+    var cache = {};
+
+    return function (key) {
+        if (cache[key] === undefined) {
+            cache[key] = fn(key);
+        }
+
+        return cache[key];
+    }
+};
+
 var reduce = curry(function (func, accumulator, items) {
     if (!isFunction(func)) {
         throw new Error("reduce takes a function as the first value");
@@ -166,20 +178,21 @@ var output = function (val) {
 
 module.exports = {
     curry: curry,
-    isFunction: isFunction,
-    isObject: isObject,
-    isArray: isArray,
-    isString: isString,
-    isNumber: isNumber,
-    sortBy: sortBy,
-    prop: prop,
-    forEach: forEach,
-    map: map,
-    reduce: reduce,
-    toPairs: toPairs,
     defaults: defaults,
-    output: output,
     filter: filter,
+    forEach: forEach,
+    isArray: isArray,
+    isFunction: isFunction,
+    isNumber: isNumber,
+    isObject: isObject,
+    isString: isString,
+    map: map,
+    memoize: memoize,
+    noOp: noOp,
+    output: output,
+    prop: prop,
+    reduce: reduce,
     some: some,
-    noOp: noOp
+    sortBy: sortBy,
+    toPairs: toPairs
 };

@@ -75,6 +75,23 @@ buster.testCase("library", {
         },
     },
 
+    "memoize": function () {
+        var i = 1;
+        var check = L.memoize(function (pass) {
+            return pass + i++;
+        });
+            
+        // Shouldn't be cached
+        assert.equals(check("password"), "password1");
+        assert.equals(check("foo"), "foo2");
+
+        // Should be cached
+        assert.equals(check("password"), "password1");
+
+        // Should be cached
+        assert.equals(check("bar"), "bar3");
+    },
+
     "sortBy": {
         "basic": function () {
             assert.equals(L.sortBy("name", [{ "name": "bob"}, { "name": "adam"}]), [{ "name": "adam" }, { "name": "bob" }]);
