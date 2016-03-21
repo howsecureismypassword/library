@@ -1,0 +1,22 @@
+{
+  "name": "hsimp-library",
+  "version": "0.1.1",
+  "description": "A smaller version of the Ramda functions used by HSIMP",
+  "main": "library.js",
+  "scripts": {
+    "test": "node test"
+  },
+  "author": "Small Hadron Collider",
+  "license": "MIT",
+  "repository" : {
+    "type" : "git",
+    "url" : "http://github.com/howsecureismypassword/library.git"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "browserify": "^8.1.0",
+    "buster": "0.7.*",
+    "uglify": "^0.1.1"
+  }
+}
