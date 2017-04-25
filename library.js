@@ -71,6 +71,10 @@ var forEach = curry(function (func, items) {
     }
 });
 
+var first = function (arr, def) {
+    return arr.length ? arr[0] : def;
+};
+
 var map = curry(function (func, item) {
     var arr = [];
 
@@ -181,6 +185,7 @@ module.exports = {
     defaults: defaults,
     filter: filter,
     forEach: forEach,
+    first: first,
     isArray: isArray,
     isFunction: isFunction,
     isNumber: isNumber,
